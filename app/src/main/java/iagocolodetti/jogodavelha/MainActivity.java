@@ -12,14 +12,14 @@ public class MainActivity extends AppCompatActivity {
     boolean iniciado = false;
 
     int[][] possibilidades = {
-            new int[] {0, 1, 2},
-            new int[] {3, 4, 5},
-            new int[] {6, 7, 8},
-            new int[] {0, 3, 6},
-            new int[] {1, 4, 7},
-            new int[] {2, 5, 8},
-            new int[] {0, 4, 8},
-            new int[] {2, 4, 6}
+            new int[]{0, 1, 2},
+            new int[]{3, 4, 5},
+            new int[]{6, 7, 8},
+            new int[]{0, 3, 6},
+            new int[]{1, 4, 7},
+            new int[]{2, 5, 8},
+            new int[]{0, 4, 8},
+            new int[]{2, 4, 6}
     };
 
     int vitoriasX, vitoriasO, empates, jogadas;
@@ -117,33 +117,26 @@ public class MainActivity extends AppCompatActivity {
 
         btIniciar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (!iniciado)
-                {
+                if (!iniciado) {
                     iniciado = true;
                     jogadas = 0;
                     tvs[4].setVisibility(View.INVISIBLE);
                     btIniciar.setEnabled(false);
-                    for (int i = 0; i < bts.length; i++)
-                    {
+                    for (int i = 0; i < bts.length; i++) {
                         bts[i].setText("-");
                         bts[i].setTextColor(cPadrao);
                     }
                     Random r = new Random();
                     int random = r.nextInt(100) + 1;
-                    if (random == 1)
-                    {
+                    if (random == 1) {
                         jogadorDaVez = "X";
                         tvs[3].setText("Jogador da Vez: " + jogadorDaVez);
                         tvs[3].setTextColor(cX);
-                    }
-                    else if (random % 2 == 0)
-                    {
+                    } else if (random % 2 == 0) {
                         jogadorDaVez = "O";
                         tvs[3].setText("Jogador da Vez: " + jogadorDaVez);
                         tvs[3].setTextColor(cO);
-                    }
-                    else
-                    {
+                    } else {
                         jogadorDaVez = "X";
                         tvs[3].setText("Jogador da Vez: " + jogadorDaVez);
                         tvs[3].setTextColor(cX);
@@ -153,16 +146,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void checarResultado(Button btClicado, Button[] bts, Button btIniciar, TextView[] tvs)
-    {
-        if (btClicado.getText() == "-")
-        {
+    private void checarResultado(Button btClicado, Button[] bts, Button btIniciar, TextView[] tvs) {
+        if (btClicado.getText() == "-") {
             btClicado.setText(jogadorDaVez);
             jogadas++;
-            for (int i = 0; i < possibilidades.length; i++)
-            {
-                if (bts[possibilidades[i][0]].getText() == "X" && bts[possibilidades[i][1]].getText() == "X" && bts[possibilidades[i][2]].getText() == "X")
-                {
+            for (int i = 0; i < possibilidades.length; i++) {
+                if (bts[possibilidades[i][0]].getText() == "X" && bts[possibilidades[i][1]].getText() == "X" && bts[possibilidades[i][2]].getText() == "X") {
                     tvs[3].setText("Jogador da Vez: --");
                     tvs[3].setTextColor(cPadrao);
                     bts[possibilidades[i][0]].setTextColor(cX);
@@ -174,9 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     tvs[4].setVisibility(View.VISIBLE);
                     fimDeJogo(btIniciar, tvs);
                     return;
-                }
-                else if (bts[possibilidades[i][0]].getText() == "O" && bts[possibilidades[i][1]].getText() == "O" && bts[possibilidades[i][2]].getText() == "O")
-                {
+                } else if (bts[possibilidades[i][0]].getText() == "O" && bts[possibilidades[i][1]].getText() == "O" && bts[possibilidades[i][2]].getText() == "O") {
                     tvs[3].setText("Jogador da Vez: --");
                     tvs[3].setTextColor(cPadrao);
                     bts[possibilidades[i][0]].setTextColor(cO);
@@ -190,16 +177,12 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
             }
-            if (jogadas < 9)
-            {
-                if (jogadorDaVez == "X")
-                {
+            if (jogadas < 9) {
+                if (jogadorDaVez == "X") {
                     jogadorDaVez = "O";
                     tvs[3].setText("Jogador da Vez: " + jogadorDaVez);
                     tvs[3].setTextColor(cO);
-                }
-                else
-                {
+                } else {
                     jogadorDaVez = "X";
                     tvs[3].setText("Jogador da Vez: " + jogadorDaVez);
                     tvs[3].setTextColor(cX);
@@ -216,8 +199,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void fimDeJogo(Button btIniciar, TextView[] tvs)
-    {
+    private void fimDeJogo(Button btIniciar, TextView[] tvs) {
         iniciado = false;
         tvs[0].setText("X: " + vitoriasX);
         tvs[1].setText("V: " + empates);
